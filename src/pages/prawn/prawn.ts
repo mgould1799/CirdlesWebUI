@@ -20,7 +20,10 @@ export class Prawn {
   });
   hasBaseDropZoneOver: boolean = false;
 
-  rmValues = ["T"];
+  useSBM: boolean = true;
+  useLinFits: boolean = false;
+  rmValues: Array<string> = ["T"];
+  selectedRM: string = this.rmValues[0];
 
   constructor() {
     var _this = this;
@@ -55,9 +58,9 @@ export class Prawn {
     let options: FileUploaderOptions = {
       method: 'POST',
       additionalParameter: {
-        'useSBM': true,
-        'userLinFits': false,
-        'firstLetterRM': 'T'
+        'useSBM': this.useSBM,
+        'userLinFits': this.useLinFits,
+        'firstLetterRM': this.selectedRM
       }
     }
     this.uploader.setOptions(options);

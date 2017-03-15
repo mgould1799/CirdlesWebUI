@@ -6,16 +6,31 @@
         Drop a prawn file here
       </div>
       <input type="file" ng2FileSelect [uploader]="uploader" (change)="fileChosen()" />
+      <p>
+        {{ selectedRM }}
+      </p>
     </div>
     <div fxLayout="column">
       <h4>Options</h4>
-      <md-slide-toggle>Use SBM</md-slide-toggle>
-      <md-slide-toggle>Use Lin Fits</md-slide-toggle>
-      <md-select placeholder="First Letter RM">
-        <md-option *ngFor="let rm of rmValues" [value]="rm">
-          {{ rm }}
-        </md-option>
-      </md-select>
+      <div fxLayoutGap="5px">
+        <md-slide-toggle [(ngModel)]="useSBM">Normalise Ion Counts to SBM</md-slide-toggle>
+        <md-radio-group [(ngModel)]="useLinFits">
+          <h5>Select Ratio Calculation Method</h5>
+          <md-radio-button [value]="true">
+            Linear Regression to burn mid-time
+          </md-radio-button>
+          <md-radio-button [value]="false">
+            Spot Average (time-invariant)
+          </md-radio-button>
+        </md-radio-group>
+        <div>
+          <md-select placeholder="First Letter RM" [(ngModel)]="selectedRM">
+            <md-option *ngFor="let rm of rmValues" [value]="rm">
+              {{ rm }}
+            </md-option>
+          </md-select>
+        </div>
+      </div>
     </div>
   </div>
   <div fxFlex fxLayout="column" fxLayoutGap="30px" fxLayoutAlign="start start">
