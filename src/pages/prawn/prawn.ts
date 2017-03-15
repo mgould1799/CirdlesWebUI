@@ -1,0 +1,68 @@
+import { Component } from '@angular/core';
+import { FileUploader, FileUploaderOptions, FileItem, ParsedResponseHeaders } from 'ng2-file-upload';
+import * as FileSaver from 'file-saver';
+
+const prawnURL: string = 'http://cirdlesserver.cs.cofc.edu/Services/prawn';
+
+@Component({
+  selector: 'app-prawn',
+  templateUrl: './prawn.html',
+  styleUrls: ['./prawn.scss']
+})
+export class Prawn {
+
+  downloadSuccess: boolean = false;
+  fileName: string = 'reports.zip';
+
+  uploader: FileUploader = new FileUploader({
+    url: prawnURL,
+    itemAlias: 'prawnFile'
+  });
+  hasBaseDropZoneOver: boolean = false;
+
+  rmValues = ["T"];
+
+  constructor() {
+    var _this = this;
+    // must override this method to set the response type to "arraybuffer"
+    this.uploader.onBeforeUploadItem = function(fileItem: FileItem) {
+      fileItem._xhr.responseType = 'arraybuffer';
+    }
+
+    // must override the on complete method for the uploader so that
+    // we can download the file from the repsonse
+    this.uploader.onCompleteItem = function(item: FileItem, response: string, status: number, headers: ParsedResponseHeaders) {
+
+      if (status === 200) {
+        _this.downloadSuccess = true;
+        let blob: Blob = new Blob([response], {type: 'application/zip'});
+        FileSaver.saveAs(blob, _this.fileName);
+      }
+
+    }
+  }
+
+  fileOverBase(e: any): void {
+    this.hasBaseDropZoneOver = e;
+  }
+
+  fileChosen() {
+    if (this.uploader.queue.length > 1)
+      this.uploader.queue = [this.uploader.queue[this.uploader.queue.length-1]];
+  }
+
+  uploadFile(item: FileItem) {
+    let options: FileUploaderOptions = {
+      method: 'POST',
+      additionalParameter: {
+        'useSBM': true,
+        'userLinFits': false,
+        'firstLetterRM': 'T'
+      }
+    }
+    this.uploader.setOptions(options);
+
+    this.uploader.uploadItem(item);
+  }
+
+}
