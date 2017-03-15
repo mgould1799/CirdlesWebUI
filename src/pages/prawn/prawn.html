@@ -1,0 +1,67 @@
+<div class="routerContainer" fxFlex fxLayout="row" fxLayoutAlign="center start" fxLayoutGap="10px">
+  <div fxFlex fxFlex.gt-sm="30" fxLayout="column" fxLayoutGap="50px" fxLayoutAlign="start start">
+    <h3>Select Prawn XML File</h3>
+    <div fxLayout="column">
+      <div ng2FileDrop [ngClass]="{'nv-file-over': hasBaseDropZoneOver}" (fileOver)="fileOverBase($event)" (onFileDrop)="fileChosen()" [uploader]="uploader" class="well">
+        Drop a prawn file here
+      </div>
+      <input type="file" ng2FileSelect [uploader]="uploader" (change)="fileChosen()" />
+    </div>
+    <div fxLayout="column">
+      <h4>Options</h4>
+      <md-slide-toggle>Use SBM</md-slide-toggle>
+      <md-slide-toggle>Use Lin Fits</md-slide-toggle>
+      <md-select placeholder="First Letter RM">
+        <md-option *ngFor="let rm of rmValues" [value]="rm">
+          {{ rm }}
+        </md-option>
+      </md-select>
+    </div>
+  </div>
+  <div fxFlex fxLayout="column" fxLayoutGap="30px" fxLayoutAlign="start start">
+    <h3>Upload Status</h3>
+    <table id="uploadTable">
+      <thead>
+        <tr>
+          <th width="50%">Name</th>
+          <th width="10%">Status</th>
+          <th width="40%">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of uploader.queue">
+          <td>{{ item?.file?.name }}</td>
+          <td>
+            <div *ngIf="item.isSuccess">
+              <md-icon>done</md-icon>
+            </div>
+            <div *ngIf="item.isError">
+              <md-icon>error_outline</md-icon>
+            </div>
+          </td>
+          <td nowrap>
+            <button type="button" class="btn btn-success btn-xs" (click)="item.upload()" [disabled]="item.isReady || item.isUploading || item.isSuccess">
+                <span class="glyphicon glyphicon-upload"></span> Upload
+            </button>
+            <button type="button" class="btn btn-warning btn-xs" (click)="item.cancel()" [disabled]="!item.isUploading">
+                <span class="glyphicon glyphicon-ban-circle"></span> Cancel
+            </button>
+            <button type="button" class="btn btn-danger btn-xs" (click)="item.remove()">
+                <span class="glyphicon glyphicon-trash"></span> Remove
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div id="uploadProgress">
+      Upload progress:
+      <div class="progress" style="">
+        <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploader.progress + '%' }"></div>
+      </div>
+      <div *ngIf="downloadSuccess">
+        <p>Download Completed!</p>
+        <p><small><b>NOTE:</b> If you are using Safari you may not be able to download the "{{ fileName }}" file. If you are having issues, try using Chrome of Firefox.</small></p>
+      </div>
+    </div>
+  </div>
+</div>

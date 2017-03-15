@@ -1,0 +1,30 @@
+:host {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+}
+
+// when dragging over drop box
+.nv-file-over {
+  border: solid 1px #25D226;
+}
+
+.routerContainer {
+  padding: 30px;
+}
+
+/* Upload Table */
+#uploadTable {
+  width: 100%;
+
+  thead {
+    border-bottom: 3px solid rgba(0, 0, 0, 0.25);
+  }
+  td {
+    padding: 15px 0px 15px 5px;
+  }
+}
+
+#uploadProgress {
+  width: 100%;
+}
