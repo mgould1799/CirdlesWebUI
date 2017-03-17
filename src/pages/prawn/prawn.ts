@@ -93,6 +93,11 @@ export class Prawn {
     this.uploader.uploadItem(this.currentFile);
   }
 
+  cancelUpload() {
+    this.currentFile.cancel();
+    this.reset();
+  }
+
   removeCurrentFile() {
     this.uploader.queue[0].remove();
     this.currentFile = null;

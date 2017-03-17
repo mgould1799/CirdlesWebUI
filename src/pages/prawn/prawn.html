@@ -38,7 +38,7 @@
                 <button type="button" class="btn btn-success btn-xs" (click)="uploadFile()" [disabled]="!currentFile || currentFile?.isReady || currentFile?.isUploading || currentFile?.isSuccess">
                   <span class="glyphicon glyphicon-upload"></span> Upload
                 </button>
-                <button type="button" class="btn btn-warning btn-xs" (click)="currentFile?.cancel()" [disabled]="!currentFile?.isUploading">
+                <button type="button" class="btn btn-warning btn-xs" (click)="cancelUpload()" [disabled]="!currentFile?.isUploading">
                   <span class="glyphicon glyphicon-ban-circle"></span> Cancel
                 </button>
                 <button type="button" class="btn btn-danger btn-xs" (click)="removeCurrentFile()" [disabled]="!currentFile">
