@@ -89,7 +89,6 @@ export class Prawn {
       }
     }
     this.uploader.setOptions(options);
-
     this.uploader.uploadItem(this.currentFile);
   }
 
@@ -101,6 +100,7 @@ export class Prawn {
   removeCurrentFile() {
     this.uploader.queue[0].remove();
     this.currentFile = null;
+    (<HTMLInputElement>document.getElementById("fileSelect")).value = "";
     this.reset();
   }
 
