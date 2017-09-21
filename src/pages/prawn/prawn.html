@@ -2,12 +2,15 @@
   <div fxFlex fxLayout="column" fxLayoutGap="2%">
     <div fxLayout="row" fxLayoutAlign="center start" fxLayoutGap="10px">
       <div fxFlex fxFlex.gt-sm="30" fxLayout="column" fxLayoutGap="30px" fxLayoutAlign="start start">
-        <h3>Select Prawn XML File</h3>
+        <h2>Upload Prawn XML File (Default or Compressed)</h2>
+        <p><small><b>NOTE:</b> Compressed prawn files will upload faster</small></p>
         <div fxLayout="column">
           <div ng2FileDrop [ngClass]="{'nv-file-over': hasBaseDropZoneOver}" (fileOver)="fileOverBase($event)" (onFileDrop)="fileChosen()" [uploader]="uploader" class="well">
-            Drop a prawn file here
+            <p align="center">Drop a prawn file here</p>
           </div>
-          <input type="file" ng2FileSelect [uploader]="uploader" (change)="fileChosen()" />
+          <label for="fileSelect"><button type="button" class="btn btn-primary btn-block">Choose Prawn File...</button></label>
+          <input id="fileSelect" type="file" ng2FileSelect [uploader]="uploader" (change)="fileChosen()" />
+          <br>
         </div>
       </div>
       <div fxFlex fxLayout="column" fxLayoutGap="30px" fxLayoutAlign="start start">
@@ -37,9 +40,6 @@
               <td nowrap>
                 <button type="button" class="btn btn-success btn-xs" (click)="uploadFile()" [disabled]="!currentFile || currentFile?.isReady || currentFile?.isUploading">
                   <span class="glyphicon glyphicon-upload"></span> Upload
-                </button>
-                <button type="button" class="btn btn-warning btn-xs" (click)="cancelUpload()" [disabled]="!currentFile?.isUploading">
-                  <span class="glyphicon glyphicon-ban-circle"></span> Cancel
                 </button>
                 <button type="button" class="btn btn-danger btn-xs" (click)="removeCurrentFile()" [disabled]="!currentFile">
                   <span class="glyphicon glyphicon-trash"></span> Remove
@@ -72,7 +72,6 @@
                     <p>Download Success</p>
                     <md-icon id="prawnDone">done</md-icon>
                   </div>
-                  <p><small><b>NOTE:</b> If you are using Safari you may not be able to download the "{{ fileName }}" file. If you are having issues, try using Chrome of Firefox.</small></p>
                 </ng-container>
               </ng-container>
             </div>

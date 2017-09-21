@@ -12,18 +12,21 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { AppComponent } from './app.component';
 import { Home } from '../pages/home/home';
 import { Prawn } from '../pages/prawn/prawn';
+import { Ambapo } from '../pages/ambapo/ambapo';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: Home, pathMatch: 'full' },
-  { path: 'prawn', component: Prawn, pathMatch: 'full' }
+  { path: 'prawn', component: Prawn, pathMatch: 'full' },
+  { path: 'ambapo', component: Ambapo, pathMatch: 'full' }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     Home,
-    Prawn
+    Prawn,
+    Ambapo
   ],
   imports: [
     FileUploadModule,

@@ -4,6 +4,13 @@
   flex: 1;
 }
 
+/* Fix for ng2fileselect */
+
+#fileSelect{
+  visibility: hidden;
+
+}
+
 // when dragging over drop box
 .nv-file-over {
   border: solid 1px #25D226;
@@ -14,7 +21,7 @@
 }
 
 #rmSelect {
-    margin-top: 15px;
+  margin-top: 15px;
 }
 
 .font-18 {

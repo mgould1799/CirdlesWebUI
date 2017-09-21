@@ -14,8 +14,9 @@ export class AppComponent {
   constructor(public location: Location) {
 
     this.paths = [
-      {name: 'Home', path: '/home'},
-      {name: 'Calamari', path: '/prawn'}
+      {name: 'CIRDLES Web Services', path: '/home'},
+      {name: 'Squid', path: '/prawn'},
+      {name: 'Ambapo', path: '/ambapo'}
     ]
 
     this.setCurrentUrlName();
@@ -41,7 +42,7 @@ export class AppComponent {
     }
 
     if (!found)
-      this.currentPage = "Home";
+      this.currentPage = "CIRDLES Web Services";
     else
       this.currentPage = name;
   }
