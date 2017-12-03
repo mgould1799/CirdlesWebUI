@@ -1,26 +1,26 @@
-<md-sidenav-container id="sidenavContainer">
-    <md-sidenav #sidenav id="sidenav" fxFlex="200px" fxFlex.gt-sm="250px">
-        <md-toolbar color="primary">
-            <button md-button class="menuButton" (click)="sidenav.close()">
-                <md-icon>menu</md-icon>
+<mat-sidenav-container id="sidenavContainer">
+    <mat-sidenav #sidenav id="sidenav" fxFlex="200px" fxFlex.gt-sm="250px">
+        <mat-toolbar color="primary" id="mat-toolbar-row-home">
+            <button mat-button class="menuButton" (click)="sidenav.close()">
+                <mat-icon>menu</mat-icon>
             </button>
-        </md-toolbar>
-        <md-nav-list>
-            <a md-list-item *ngFor="let path of paths" [routerLink]="[path.path]" routerLinkActive="active" (click)="sidenav.close() && pageChanged(path.name)">{{ path.name }}</a>
-        </md-nav-list>
-    </md-sidenav>
+        </mat-toolbar>
+        <mat-nav-list>
+            <a mat-list-item *ngFor="let path of paths" [routerLink]="[path.path]" routerLinkActive="active" (click)="sidenav.close() && pageChanged(path.name)">{{ path.name }}</a>
+        </mat-nav-list>
+    </mat-sidenav>
     <div id="outerContainer" fxLayout="column">
-        <md-toolbar color="primary">
+        <mat-toolbar color="primary" id="mat-toolbar-row-home">
             <div fxFlex>
-                <button md-button class="menuButton" (click)="sidenav.open()">
-                    <md-icon>menu</md-icon>
+                <button mat-button class="menuButton" (click)="sidenav.open()">
+                    <mat-icon>menu</mat-icon>
                 </button>
             </div>
             <h3>{{ currentPage }}</h3>
             <div fxFlex></div>
-        </md-toolbar>
+        </mat-toolbar>
         <div fxFlex fxLayout="column">
             <router-outlet></router-outlet>
         </div>
     </div>
-</md-sidenav-container>
+</mat-sidenav-container>

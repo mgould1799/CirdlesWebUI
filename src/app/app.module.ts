@@ -6,8 +6,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { FileUploadModule } from 'ng2-file-upload';
 import {LocationStrategy, HashLocationStrategy} from '@angular/common';
 
-import { MaterialModule } from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { MaterialModule } from './material.module';
 
 import { AppComponent } from './app.component';
 import { Home } from '../pages/home/home';
@@ -30,11 +31,12 @@ const appRoutes: Routes = [
   ],
   imports: [
     FileUploadModule,
-    MaterialModule,
     FlexLayoutModule,
     BrowserModule,
     FormsModule,
     HttpModule,
+    MaterialModule,
+    BrowserAnimationsModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [],
