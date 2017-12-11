@@ -28,13 +28,13 @@
               <td>{{ currentFile?.file?.name }}</td>
               <td height="70">
                 <div *ngIf="uploading || downloading">
-                  <md-spinner id="statusSpinner" color="accent"></md-spinner>
+                  <mat-spinner id="statusSpinner" color="accent"></mat-spinner>
                 </div>
                 <div *ngIf="currentFile?.isSuccess">
-                  <md-icon>done</md-icon>
+                  <mat-icon>done</mat-icon>
                 </div>
                 <div *ngIf="currentFile?.isError">
-                  <md-icon>error_outline</md-icon>
+                  <mat-icon>error_outline</mat-icon>
                 </div>
               </td>
               <td nowrap>
@@ -56,21 +56,21 @@
               </div>
               <div *ngSwitchCase="false" id="prawnDoneDiv" fxLayout="row">
                 <p>Prawn file uploaded</p>
-                <md-icon id="prawnDone">done</md-icon>
+                <mat-icon id="prawnDone">done</mat-icon>
               </div>
             </ng-container>
-            <md-progress-bar id="progressBar" color="accent" mode="determinate" [value]="fileProgress">
-            </md-progress-bar>
+            <mat-progress-bar id="progressBar" color="accent" mode="determinate" [value]="fileProgress">
+            </mat-progress-bar>
             <div id="downloadContainer" [ngSwitch]="downloading">
               <div *ngSwitchCase="true" fxLayout="row">
                 <p>Downloading {{ fileName }} file</p>
-                <md-spinner color="accent" id="downloadSpinner"></md-spinner>
+                <mat-spinner color="accent" id="downloadSpinner"></mat-spinner>
               </div>
               <ng-container *ngSwitchCase="false" [ngSwitch]="downloadSuccess">
                 <ng-container *ngSwitchCase="true">
                   <div fxLayout="row">
                     <p>Download Success</p>
-                    <md-icon id="prawnDone">done</md-icon>
+                    <mat-icon id="prawnDone">done</mat-icon>
                   </div>
                 </ng-container>
               </ng-container>
@@ -82,20 +82,22 @@
     <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
       <div fxFlex fxLayout="column">
         <h3>Options</h3>
-        <md-divider></md-divider>
-        <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="space-around center">
-          <md-slide-toggle [(ngModel)]="useSBM">Normalise Ion Counts to SBM</md-slide-toggle>
-          <md-radio-group fxLayout="column" [(ngModel)]="useLinFits">
+        <mat-divider></mat-divider>
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+          <mat-slide-toggle [(ngModel)]="useSBM">Normalise Ion Counts to SBM</mat-slide-toggle>
+          <mat-radio-group fxLayout="column" [(ngModel)]="useLinFits">
             <h4>Select Ratio Calculation Method:</h4>
-            <md-radio-button [value]="true">Linear Regression to burn mid-time</md-radio-button>
-            <md-radio-button [value]="false">Spot Average (time-invariant)</md-radio-button>
-          </md-radio-group>
+            <mat-radio-button [value]="true">Linear Regression to burn mid-time</mat-radio-button>
+            <mat-radio-button [value]="false">Spot Average (time-invariant)</mat-radio-button>
+          </mat-radio-group>
           <div id="rmSelect">
-            <md-select placeholder="First Letter RM" [(ngModel)]="selectedRM">
-              <md-option *ngFor="let rm of rmValues" [value]="rm">
-                {{ rm }}
-              </md-option>
-            </md-select>
+            <mat-form-field>
+                <mat-select placeholder="First Letter RM" [(ngModel)]="selectedRM">
+                    <mat-option *ngFor="let rm of rmValues" [value]="rm">
+                      {{ rm }}
+                    </mat-option>
+                  </mat-select>
+            </mat-form-field>
           </div>
         </div>
       </div>
