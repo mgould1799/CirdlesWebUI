@@ -51,6 +51,10 @@ export class Ambapo {
       });
     }
 
+    fileOverBase(e: any): void {
+      this.hasBaseDropZoneOver = e;
+    }
+
     convertFile() {  
       let options: FileUploaderOptions = {
         method: 'POST',
