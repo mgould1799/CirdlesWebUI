@@ -1,0 +1,26 @@
+{
+  "presets": [
+    [
+      "latest",
+      {
+        "es2015": {
+          "modules": false
+        }
+      }
+    ],
+    "react",
+    "flow"
+  ],
+  "retainLines": true,
+  "plugins": [
+    [
+      "module-resolver",
+      {
+        "cwd": "babelrc",
+        "root": [".src"],
+        "extensions": [".js", ".scss"]
+      }
+    ],
+    "transform-object-rest-spread"
+  ]
+}
