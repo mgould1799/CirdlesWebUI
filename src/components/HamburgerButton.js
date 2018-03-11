@@ -1,11 +1,15 @@
 // @flow
 import React, { Component } from 'react';
 import Radium from 'radium';
+import { colors } from 'constants';
 
 type Props = {
   onClick: Function,
   size: number,
-  active: boolean
+  active: boolean,
+  color?: string,
+  activeColor?: string,
+  style?: any
 };
 
 class Hamburger extends Component<Props> {
@@ -18,15 +22,68 @@ class Hamburger extends Component<Props> {
   }
 
   render() {
-    const { children, onClick, size, active } = this.props;
+    const {
+      onClick,
+      size,
+      active,
+      style = {},
+      color = colors.dark,
+      activeColor = colors.white
+    } = this.props;
+    const margin = `${Math.floor(size / 3)}px`;
+    const height = Math.floor(size / 6);
+    const width = Math.floor(size * 1.2);
     return (
       <div
         onClick={onClick}
-        style={[styles.wrapper, { height: size, width: size }]}
+        style={[styles.wrapper, { height: size, width }, style]}
       >
-        <div style={[styles.line, { transform: active && 'rotate(45deg)' }]} />
-        <div style={[styles.line, { opacity: active && 0 }]} />
-        <div style={[styles.line, { transform: active && 'rotate(-45deg)' }]} />
+        <div
+          style={[
+            styles.line,
+            {
+              backgroundColor: color,
+              height,
+              width,
+              position: 'absolute',
+              marginTop: `-${margin}`
+            },
+            active && {
+              transform: 'rotate(-45deg)',
+              marginTop: '0px',
+              backgroundColor: activeColor
+            }
+          ]}
+        />
+        <div
+          style={[
+            styles.line,
+            {
+              backgroundColor: color,
+              height,
+              width,
+              position: 'absolute'
+            },
+            active && { opacity: 0, backgroundColor: activeColor }
+          ]}
+        />
+        <div
+          style={[
+            styles.line,
+            {
+              backgroundColor: color,
+              height,
+              width,
+              position: 'absolute',
+              marginTop: margin
+            },
+            active && {
+              transform: 'rotate(45deg)',
+              marginTop: '0px',
+              backgroundColor: activeColor
+            }
+          ]}
+        />
       </div>
     );
   }
@@ -34,12 +91,14 @@ class Hamburger extends Component<Props> {
 
 const styles = {
   wrapper: {
-    cursor: 'pointer'
+    cursor: 'pointer',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center'
   },
   line: {
-    height: 3,
-    width: '100%',
-    transition: 'all 0.5s ease'
+    transition: 'all 0.5s ease',
+    borderRadius: 5
   }
 };
 
