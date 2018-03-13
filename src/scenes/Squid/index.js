@@ -1,9 +1,45 @@
-import React from 'react';
+// @flow
+import React, { Component } from 'react';
+import Radium from 'radium';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { createProject } from 'actions';
+import { Button } from 'components';
 
-const SquidPage = () => (
-  <div>
-    <h1>Squid Page</h1>
-  </div>
-);
+type Props = {
+  createProject: Function
+};
 
-export default SquidPage;
+class SquidPage extends Component<Props> {
+  constructor(props) {
+    super(props);
+    const _this: any = this;
+    _this.createProject = this.createProject.bind(this);
+  }
+
+  createProject() {
+    // this.props.createProject('');
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>Squid Page</h1>
+        <Button onClick={this.createProject}>Create new project</Button>
+        {/* <input type="file" onChange={this.onFileChange} /> */}
+      </div>
+    );
+  }
+}
+
+function mapStateToProps(state) {
+  return {};
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    createProject: bindActionCreators(createProject, dispatch)
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Radium(SquidPage));
