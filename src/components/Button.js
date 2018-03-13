@@ -3,18 +3,12 @@ import React from 'react';
 
 type Props = {
   onClick: Function,
-  className?: string,
-  children: any
+  children?: any
 };
 
-export const Button = ({
-  onClick,
-  children,
-  className = '',
-  ...rest
-}: Props) => {
+export const Button = ({ onClick, children, ...rest }: Props) => {
   return (
-    <button onClick={onClick} className={'button ' + className} {...rest}>
+    <button onClick={onClick} {...rest}>
       {children}
     </button>
   );

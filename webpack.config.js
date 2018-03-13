@@ -2,11 +2,17 @@ var webpack = require('webpack');
 var path = require('path');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
-  template: './src/index.html',
-  filename: 'index.html',
-  inject: 'body'
-});
+
+const endpoints = ['', 'squid', 'ambapo'];
+const HtmlWebpackPluginList = [];
+for (let endpoint of endpoints) {
+  const HtmlWebpackPluginEndpoint = new HtmlWebpackPlugin({
+    template: './src/index.html',
+    filename: `${endpoint}${endpoint.length > 0 ? '/' : ''}index.html`,
+    inject: 'body'
+  });
+  HtmlWebpackPluginList.push(HtmlWebpackPluginEndpoint);
+}
 
 module.exports = {
   entry: ['./src/index.js'],
@@ -32,9 +38,11 @@ module.exports = {
     alias: {
       components: path.resolve('./src/components'),
       constants: path.resolve('./src/constants'),
+      actions: path.resolve('./src/actions'),
+      reducers: path.resolve('./src/reducers'),
       styles: path.resolve('./src/styles'),
       img: path.resolve('./src/img')
     }
   },
-  plugins: [HtmlWebpackPluginConfig]
+  plugins: [...HtmlWebpackPluginList]
 };
