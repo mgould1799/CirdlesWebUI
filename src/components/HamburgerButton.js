@@ -1,7 +1,7 @@
 // @flow
 import React, { Component } from 'react';
 import Radium from 'radium';
-import { colors } from 'constants';
+import { colors, MENU_TRANSITION_TIME_SEC } from 'constants';
 
 type Props = {
   onClick: Function,
@@ -97,7 +97,7 @@ const styles = {
     justifyContent: 'center'
   },
   line: {
-    transition: 'all 0.5s ease',
+    transition: `all ${MENU_TRANSITION_TIME_SEC}s ease`,
     borderRadius: 5
   }
 };
