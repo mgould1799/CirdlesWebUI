@@ -24,8 +24,7 @@ class SquidPage extends Component<Props> {
   render() {
     return (
       <div>
-        <h1>Squid Page</h1>
-        <Button onClick={this.createProject}>Create new project</Button>
+        {/* <Button onClick={this.createProject}>Create new project</Button> */}
         {/* <input type="file" onChange={this.onFileChange} /> */}
       </div>
     );
