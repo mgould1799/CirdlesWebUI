@@ -1,19 +1,31 @@
 // @flow
-import React from 'react';
+import React, { Component } from 'react';
 import Radium from 'radium';
 import { Nav } from './components';
 import { HEADER_HEIGHT } from 'constants';
 
-const BaseHeader = () => (
-  <header style={styles.header}>
-    <div style={styles.left}>
-      <h3 style={styles.title}>CIRDLES Web Services</h3>
-    </div>
-    <div style={styles.right}>
-      <Nav />
-    </div>
-  </header>
-);
+type Props = {};
+
+class BaseHeader extends Component<Props> {
+  nav;
+
+  closeMenu() {
+    this.nav && this.nav.resetMenu();
+  }
+
+  render() {
+    return (
+      <header style={styles.header}>
+        <div style={styles.left}>
+          <h3 style={styles.title}>CIRDLES Web Services</h3>
+        </div>
+        <div style={styles.right}>
+          <Nav ref={nav => (this.nav = nav)} />
+        </div>
+      </header>
+    );
+  }
+}
 
 const styles = {
   header: {

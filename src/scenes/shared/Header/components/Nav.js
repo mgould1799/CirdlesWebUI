@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import Radium from 'radium';
 import { Link } from 'react-router-dom';
 import { HamburgerButton } from 'components';
-import { colors } from 'constants';
+import { colors, MENU_TRANSITION_TIME_SEC } from 'constants';
 
 type Props = {};
 
@@ -29,16 +29,31 @@ class BaseNav extends Component<Props, State> {
     const _this: any = this;
     _this.hamburgerClicked = this.hamburgerClicked.bind(this);
     _this.projectsClicked = this.projectsClicked.bind(this);
+    _this.resetMenu = this.resetMenu.bind(this);
   }
 
-  nav: HTMLElement;
+  nav;
 
-  hamburgerClicked() {
+  hamburgerClicked(e: Event) {
+    e && e.stopPropagation();
     this.setState({ active: !this.state.active });
+    setTimeout(
+      () => this.setState({ showProjects: false }),
+      MENU_TRANSITION_TIME_SEC * 1000
+    );
   }
 
-  projectsClicked() {
+  projectsClicked(e: Event) {
+    e && e.stopPropagation();
     this.setState({ showProjects: !this.state.showProjects });
+  }
+
+  resetMenu() {
+    this.setState({ active: false });
+    setTimeout(
+      () => this.setState({ showProjects: false }),
+      MENU_TRANSITION_TIME_SEC * 1000
+    );
   }
 
   render() {
@@ -61,7 +76,7 @@ class BaseNav extends Component<Props, State> {
             }
           ]}
         >
-          <Link to="/" style={styles.link}>
+          <Link to="/" style={styles.link} onClick={this.resetMenu}>
             Home
           </Link>
           <div style={styles.link} onClick={this.projectsClicked}>
@@ -69,10 +84,10 @@ class BaseNav extends Component<Props, State> {
           </div>
           {showProjects && (
             <div style={styles.projectsWrapper}>
-              <Link to="/squid" style={styles.link}>
+              <Link to="/squid" style={styles.link} onClick={this.resetMenu}>
                 Squid
               </Link>
-              <Link to="/ambapo" style={styles.link}>
+              <Link to="/ambapo" style={styles.link} onClick={this.resetMenu}>
                 Ambapo
               </Link>
             </div>
@@ -102,7 +117,7 @@ const styles = {
     borderRadius: 5,
     opacity: 0,
     visibility: 'hidden',
-    transition: 'all 0.5s ease'
+    transition: `all ${MENU_TRANSITION_TIME_SEC}s ease`
   },
   projectsWrapper: {
     display: 'flex',
