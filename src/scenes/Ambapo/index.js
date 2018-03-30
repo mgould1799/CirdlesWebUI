@@ -1,5 +1,31 @@
-import React from 'react';
+// @flow
+import React, { Component } from 'react';
+import Radium from 'radium';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { convertLatlngToLatlng } from 'actions';
 
-const AmbapoPage = () => <div />;
+type Props = {
+  latLngToLatLngData: any,
+  convertLatlngToLatlng: Function
+};
 
-export default AmbapoPage;
+class AmbapoPage extends Component<Props> {
+  render() {
+    return <div />;
+  }
+}
+
+function mapStateToProps(state) {
+  return {
+    latLngToLatLngData: state.ambapo.latLngToLatLngData
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    convertLatlngToLatlng: bindActionCreators(convertLatlngToLatlng, dispatch)
+  };
+}
+
+export default Radium(AmbapoPage);
