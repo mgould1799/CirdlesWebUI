@@ -8,12 +8,20 @@ type Props = {
   logo: any,
   width: any,
   height: any,
-  onClick: Function
+  onClick: Function,
+  style: any
 };
 
-const Card = ({ description, logo, width, height, onClick }: Props) => {
+const Card = ({
+  description,
+  logo,
+  width,
+  height,
+  onClick,
+  style = {}
+}: Props) => {
   return (
-    <div style={[styles.wrapper, { width, height }]} onClick={onClick}>
+    <div style={[styles.wrapper, { width, height }, style]} onClick={onClick}>
       <div style={styles.description} key="description">
         <div style={styles.descriptionText}>{description}</div>
       </div>

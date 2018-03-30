@@ -2,7 +2,7 @@
 import React from 'react';
 import Radium from 'radium';
 import { ProjectCard } from 'components';
-import { SQUID } from 'constants';
+import { SQUID, AMBAPO } from 'constants';
 
 type Props = {
   history: any
@@ -18,6 +18,15 @@ const HomePage = ({ history }: Props) => {
           width={300}
           height={300}
           onClick={() => history.push('/squid')}
+          style={{ margin: 40 }}
+        />
+        <ProjectCard
+          description={AMBAPO.description}
+          logo={require('img/logos/Ambapo.svg')}
+          width={300}
+          height={300}
+          onClick={() => history.push('/ambapo')}
+          style={{ margin: 40 }}
         />
       </div>
     </div>
