@@ -4,7 +4,9 @@ import Radium from 'radium';
 import { Nav } from './components';
 import { HEADER_HEIGHT } from 'constants';
 
-type Props = {};
+type Props = {
+  title: string
+};
 
 class BaseHeader extends Component<Props> {
   nav;
@@ -14,10 +16,11 @@ class BaseHeader extends Component<Props> {
   }
 
   render() {
+    const { title } = this.props;
     return (
       <header style={styles.header}>
         <div style={styles.left}>
-          <h3 style={styles.title}>CIRDLES Web Services</h3>
+          <h3 style={styles.title}>{title}</h3>
         </div>
         <div style={styles.right}>
           <Nav ref={nav => (this.nav = nav)} />
