@@ -1,27 +1,27 @@
 // @flow
 import {
-  LATLNG_TO_LATLNG_INIT,
-  LATLNG_TO_LATLNG_SUCCESS,
-  LATLNG_TO_LATLNG_FAILURE
+  LATLONG_TO_LATLONG_INIT,
+  LATLONG_TO_LATLONG_SUCCESS,
+  LATLONG_TO_LATLONG_FAILURE
 } from './types';
 import { AMBAPO_ENDPOINT, POST_HEADERS } from 'constants';
 
-export const convertLatlngToLatlng = (
+export const convertLatlongToLatlong = (
   latitude: number,
   longitude: number,
   fromDatum: string,
   toDatum: string
 ) => {
   return (dispatch: any) => {
-    dispatch({ type: LATLNG_TO_LATLNG_INIT });
+    dispatch({ type: LATLONG_TO_LATLONG_INIT });
     const data = { latitude, longitude, fromDatum, toDatum };
-    fetch(AMBAPO_ENDPOINT + '/latlng/latlng', {
+    fetch(AMBAPO_ENDPOINT + '/latlong/latlong', {
       method: 'POST',
       headers: POST_HEADERS,
       body: JSON.stringify(data)
     })
       .then((response: Response) => response.json())
-      .then(data => dispatch({ type: LATLNG_TO_LATLNG_SUCCESS, data }))
-      .catch(error => dispatch({ type: LATLNG_TO_LATLNG_FAILURE, error }));
+      .then(data => dispatch({ type: LATLONG_TO_LATLONG_SUCCESS, data }))
+      .catch(error => dispatch({ type: LATLONG_TO_LATLONG_FAILURE, error }));
   };
 };

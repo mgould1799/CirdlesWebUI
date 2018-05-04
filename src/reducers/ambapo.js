@@ -1,18 +1,19 @@
 // @flow
 import {
-  LATLNG_TO_LATLNG_INIT,
-  LATLNG_TO_LATLNG_SUCCESS,
-  LATLNG_TO_LATLNG_FAILURE
+  LATLONG_TO_LATLONG_INIT,
+  LATLONG_TO_LATLONG_SUCCESS,
+  LATLONG_TO_LATLONG_FAILURE
 } from 'actions';
 
 const initialState = {
-  latLngToLatLngData: null
+  fetchingLatLongToLatLong: false,
+  latLongToLatLongData: null
 };
 
 export default function profile(state: any = initialState, action: any) {
   switch (action.type) {
-    case LATLNG_TO_LATLNG_SUCCESS: {
-      return { ...state, latLngToLatLngData: action.data };
+    case LATLONG_TO_LATLONG_SUCCESS: {
+      return { ...state, latLongToLatLongData: action.data };
     }
     default:
       return state;
