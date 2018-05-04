@@ -44,5 +44,8 @@ module.exports = {
       img: path.resolve('./src/img')
     }
   },
+  devServer: {
+    port: 5000
+  },
   plugins: [...HtmlWebpackPluginList]
 };
