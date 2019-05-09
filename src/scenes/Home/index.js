@@ -28,6 +28,14 @@ const HomePage = ({ history }: Props) => {
           onClick={() => history.push('/ambapo')}
           style={{ margin: 40 }}
         />
+        <ProjectCard
+          description={"Mars Map Maker"}
+          logo={require('img/logos/marsMapMaker.svg')}
+          width={300}
+          height={300}
+          onClick={() => history.push('/marsMapMaker')}
+          style={{ margin: 40 }}
+        />
       </div>
     </div>
   );

@@ -6,6 +6,7 @@ import { Header } from 'components';
 import Home from './Home';
 import Squid from './Squid';
 import Ambapo from './Ambapo';
+import MarsMapMaker from './MarsMapMaker'
 import { HEADER_HEIGHT } from 'constants';
 import { colors } from 'constants';
 
@@ -22,6 +23,10 @@ const routes = {
   '/squid': {
     title: 'Squid Ink: Squid\'s Reporting Service (Beta)',
     component: Squid
+  },
+  '/marsMapMaker': {
+    title: 'Mars Map Maker',
+    component: MarsMapMaker
   }
 };
 
