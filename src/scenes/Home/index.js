@@ -33,7 +33,7 @@ const HomePage = ({ history }: Props) => {
           logo={require('img/logos/marsMapMaker.svg')}
           width={300}
           height={300}
-          onClick={() => history.push('/marsMapMaker')}
+          onClick={() => history.push('/marsMapMaker/src')}
           style={{ margin: 40 }}
         />
       </div>
