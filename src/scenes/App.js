@@ -6,7 +6,7 @@ import { Header } from 'components';
 import Home from './Home';
 import Squid from './Squid';
 import Ambapo from './Ambapo';
-import MarsMapMaker from './MarsMapMaker/src'
+import MarsMapMaker from './MarsMapMaker'
 import { HEADER_HEIGHT } from 'constants';
 import { colors } from 'constants';
 
