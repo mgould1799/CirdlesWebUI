@@ -3,7 +3,7 @@ import React from 'react';
 import Radium from 'radium';
 import { ProjectCard } from 'components';
 import { SQUID, AMBAPO } from 'constants';
-
+import express from 'express'
 type Props = {
   history: any
 };
@@ -33,7 +33,7 @@ const HomePage = ({ history }: Props) => {
           logo={require('img/logos/marsMapMaker.svg')}
           width={300}
           height={300}
-          onClick={() => history.push('/marsMapMaker')}
+          onClick={() => express.response("localhost:3000")}
           style={{ margin: 40 }}
         />
       </div>
