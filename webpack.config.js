@@ -1,9 +1,10 @@
 var webpack = require('webpack');
 var path = require('path');
+var nodeExternals = require('webpack-node-externals');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const endpoints = ['', 'squid', 'ambapo'];
+const endpoints = ['', 'squid', 'ambapo','marsMapMaker'];
 const HtmlWebpackPluginList = [];
 for (let endpoint of endpoints) {
   const HtmlWebpackPluginEndpoint = new HtmlWebpackPlugin({
@@ -13,6 +14,7 @@ for (let endpoint of endpoints) {
   });
   HtmlWebpackPluginList.push(HtmlWebpackPluginEndpoint);
 }
+
 
 module.exports = {
   entry: ['./src/index.js'],
@@ -47,5 +49,7 @@ module.exports = {
   devServer: {
     port: 5000
   },
-  plugins: [...HtmlWebpackPluginList]
+  plugins: [...HtmlWebpackPluginList],
+  target: 'node', // in order to ignore built-in modules like path, fs, etc.
+  externals: [nodeExternals()], // in order to ignore all modules in node_modules folder
 };
